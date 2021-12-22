@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      input,
+      select,
+      textarea {
+        display: block;
+        margin: 1rem;
+        width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="post" action="results.php">
+      <fieldset>
+        <legend>Product Form</legend>
+
+        <select name="action">
+          <option value="search">Search for Product</option>
+          <option value="create">Create new Product</option>
+          <option value="update">Update a Product</option>
+        </select>
+        <input type="text" name="name" placeholder="Product Name" required />
+        <input type="text" name="price" placeholder="Product Price" />
+        <textarea
+          name="description"
+          id=""
+          cols="30"
+          rows="10"
+          placeholder="Product Description"
+        ></textarea>
+        <input type="text" name="image" placeholder="Image URL" />
+        <button type="submit">Submit</button>
+      </fieldset>
+    </form>
+  </body>
+</html>

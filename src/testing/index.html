@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <form action="" method="post" id="PlayerName" name="PlayerName">
+      <input type="text" name="Name" id="Name" />
+      <input type="submit" onclick="return validateForm()" />
+    </form>
+    <script>
+      function validateForm() {
+        const name = document.getElementById("Name").value
+        if (!name.match(/[a-z]+/)) {
+          alert("Invalid name")
+          return false
+        }
+        return true
+      }
+    </script>
+  </body>
+</html>

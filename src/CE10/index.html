@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Launch Panel</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script></script>
+  </head>
+  <body>
+    <div>Set all the ship setting correctly and you can launch</div>
+
+    <label for="ECOn">On</label>
+    <input type="radio" value="On" checked id="ECOn" name="EC" />
+    <label for="ECOff">Off</label>
+    <input type="radio" value="Off" id="ECOff" name="EC" />Engine Coolant<br />
+
+    <input type="number" name="Burn" id="Burn" />Fuel Burn Time In
+    launch(1-100%)<br />
+    <input type="text" name="Code" id="Code" />Code
+    <button id="Launch" name="Launch" onclick="return TakeOff();">
+      Launch
+    </button>
+    <div>
+      <ul id="status"></ul>
+    </div>
+
+    <script>
+      const statusList = document.querySelector("#status")
+
+      function TakeOff() {
+        statusList.innerHTML = ""
+
+        const coolant = document.querySelector(
+          "input[type='radio'][name='EC']:checked"
+        ).value
+        const burnTime = document.querySelector("#Burn").value
+        const launchCode = document.querySelector("#Code").value
+
+        let canLaunch = true
+
+        if (coolant === "Off") {
+          createMessage("Engine coolant must be on")
+          canLaunch = false
+        }
+
+        if (burnTime > 30) {
+          createMessage("Burn time is too long")
+          canLaunch = false
+        } else if (burnTime < 20) {
+          createMessage("Burn time is too short")
+          canLaunch = false
+        }
+
+        if (launchCode.length === 0) {
+          createMessage("You must enter a launch code")
+          canLaunch = false
+        }
+
+        if (canLaunch) {
+          for (let i = 10; i > 0; i--) {
+            createMessage(i)
+          }
+          createMessage("Takeoff!")
+        }
+      }
+
+      function createMessage(text) {
+        const li = document.createElement("li")
+        li.innerText = text
+        statusList.appendChild(li)
+      }
+    </script>
+  </body>
+</html>
